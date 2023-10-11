@@ -1,0 +1,73 @@
+{
+  "name": "prometheansacrifice-ligolang",
+  "description": "A high-level language which compiles to Michelson",
+  "license": "MIT",
+  "version": "0.72.0",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/ligolang/ligo.git"
+  },
+  "esy": {
+    "release": {
+      "bin": ["ligo"],
+      "rewritePrefix": true
+    },
+    "buildsInSource": "_build",
+    "build": ["dune build -p ligo", "chmod -R a+w #{self.target_dir}"],
+    "buildEnv": {
+      "OCAMLRUNPARAM": "b"
+    }
+  },
+  "dependencies": {
+    "@opam/dune": "< 3.11",
+    "@opam/core": "< v0.16.0",
+    "@opam/menhir": "*",
+    "@opam/ppx_deriving": "*",
+    "@opam/ppx_import": "*",
+    "@opam/tezos-protocol-alpha": "*",
+    "@opam/tezos-protocol-018-Proxford": "*",
+    "@opam/tezos-018-Proxford-test-helpers": "*",
+    "@opam/core_kernel": "*",
+    "@opam/lsp": "*",
+    "@opam/coq": "*",
+    "@opam/decompress": "*",
+    "ocaml": "4.14.1000",
+    "ntdll-stubs": "*",
+    "esy-libev": "*",
+    "esy-gmp": "*",
+    "esy-libffi": "*",
+    "@opam/lwt_ppx": "*",
+    "@opam/ppx_yojson_conv": "*",
+    "@opam/msgpck": "*",
+    "@opam/semver": "*",
+    "@opam/qcheck": "*",
+    "@opam/linol": "*",
+    "@opam/linol-lwt": "*",
+    "@opam/ocaml-recovery-parser": "*",
+    "@opam/bisect_ppx": "*",
+    "@opam/tar-unix": "*",
+    "@opam/terminal_size": "*",
+    "@opam/pprint": "*",
+    "@opam/ppx_deriving_yojson": "*",
+    "@opam/simple-diff": "*",
+    "@opam/lambda-term": "*",
+    "@opam/crunch": "*"
+  },
+  "resolutions": {
+    "@opam/ocaml-recovery-parser": "git+https://github.com/serokell/ocaml-recovery-parser.git:ocaml-recovery-parser.opam#e05c872d1a0e8074940d995b57556121eddbf0f2",
+    "@opam/octez-libs": {
+      "version": "opam:18.0-ligo",
+      "override": {
+        "buildEnv": {
+          "OPAM_SWITCH_PREFIX": "#{@opam/tezos-rust-libs.install}"
+        },
+        "dependencies": {
+          "@opam/tezos-rust-libs": "*"
+        }
+      }
+    },
+    "esy-cmake": "ManasJayanth/esy-cmake:esy.json#dcc7909f7ea0604f1d644b14a3e83d7ebaf64272",
+    "esy-pkg-config": "ManasJayanth/esy-pkg-config:esy.json#bb8092e3e110e9cf6bcc1184a7727487de447b0e",
+    "esy-rustup": "esy-packages/esy-rustup:esy.json#f0327b52b38d1be98b8274a1d4ad168942b50b0d"
+  }
+}
